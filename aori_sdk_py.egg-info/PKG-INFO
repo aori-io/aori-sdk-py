@@ -1,3 +1,17 @@
+Metadata-Version: 2.1
+Name: aori-sdk-py
+Version: 0.2
+Summary: aori.io python sdk
+Home-page: https://github.com/aori-io/aori-sdk-py
+Author: Joshua Baker
+Author-email: joshua@aori.io
+Keywords: aori
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: requests
+Requires-Dist: python-dotenv
+Requires-Dist: websocket-client
+
 # Aori Python SDK
 
 The Aori Python SDK provides a convenient interface for interacting with the Aori API, allowing developers to easily integrate Aori's functionalities into their Python applications.
