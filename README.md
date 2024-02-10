@@ -14,10 +14,8 @@ The Aori Python SDK provides a convenient interface for interacting with the Aor
 To install the Aori Python SDK, run the following command:
 
 ```bash
-pip install your_package_name
+pip install aori-sdk-py
 ```
-
-Replace `your_package_name` with the actual name of your package.
 
 ## Configuration
 
@@ -26,7 +24,7 @@ Before using the SDK, you need to configure it with your Aori API key and privat
 ### Using Environment Variables
 
 1. Create a `.env` file in your project root.
-2. Add your Aori API key and private key to the `.env` file as shown in the `.env.example` file:
+2. Add your Aori API key and private key to the `.env` file as shown below:
 
 ```plaintext
 AORI_API_KEY=your_aori_api_key_here
@@ -43,7 +41,7 @@ load_dotenv()
 4. Initialize the SDK:
 
 ```python
-from aori_sdk import AoriSDK
+from aori_sdk_py.sdk import AoriSDK
 
 sdk = AoriSDK()
 ```
@@ -53,7 +51,7 @@ sdk = AoriSDK()
 Alternatively, you can pass your API key and private key directly when creating an instance of the SDK:
 
 ```python
-from aori_sdk import AoriSDK
+from aori_sdk_py.sdk import AoriSDK
 
 sdk = AoriSDK(api_key='your_aori_api_key_here', private_key='your_private_key_here')
 ```
@@ -64,16 +62,24 @@ Here are some examples of how to use the Aori Python SDK:
 
 ### Test Connectivity
 
+To test the connectivity to the Aori API, you can use the following code snippet:
+
 ```python
+from aori_sdk_py.sdk import AoriSDK
+
+sdk = AoriSDK(api_key='your_aori_api_key_here')
 connectivity_response = sdk.test_connectivity()
 print(connectivity_response)
 ```
 
+This should return a response indicating successful connectivity, such as `{'id': 1, 'result': 'aori_pong'}`.
+
 ### Create a New Order
 
 ```python
-from aori_sdk import AoriOrder
+from aori_sdk_py.sdk import AoriOrder, AoriSDK
 
+sdk = AoriSDK(api_key='your_aori_api_key_here')
 new_order = AoriOrder(
     offerer="0x...",
     inputToken="0x...",
@@ -101,6 +107,30 @@ print(order_response)
 
 ```python
 sdk.subscribe_orderbook()
+```
+
+## Testing
+
+To run a basic connectivity test, ensure you have your API key set in the `.env` file or passed directly to the `AoriSDK` instance. Here's an example test script:
+
+```python
+import os
+from dotenv import load_dotenv
+from aori_sdk_py.sdk import AoriSDK
+
+# Load environment variables
+load_dotenv()
+
+def test_aori_ping():
+    api_key = os.getenv('AORI_API_KEY', 'your_default_api_key_here')
+    sdk = AoriSDK(api_key=api_key)
+    response = sdk.test_connectivity()
+    print(response)
+    assert 'result' in response, "Ping failed, no result found in response"
+    assert response['result'] == 'aori_pong', "Ping failed, did not receive expected 'aori_pong' response"
+
+if __name__ == "__main__":
+    test_aori_ping()
 ```
 
 ## Contributing
