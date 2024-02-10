@@ -48,6 +48,7 @@ sdk = AoriSDK()
 
 ### Passing Directly
 
+
 Alternatively, you can pass your API key and private key directly when creating an instance of the SDK:
 
 ```python
