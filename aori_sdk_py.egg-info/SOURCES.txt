@@ -1,6 +1,8 @@
 LICENSE
 README.md
 setup.py
+aori_sdk_py/__init__.py
+aori_sdk_py/sdk.py
 aori_sdk_py.egg-info/PKG-INFO
 aori_sdk_py.egg-info/SOURCES.txt
 aori_sdk_py.egg-info/dependency_links.txt
